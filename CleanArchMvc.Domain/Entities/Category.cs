@@ -10,7 +10,7 @@ public sealed class Category : Entity
 
     public Category(int id, string name)
     {
-        DomainExceptionValidation.When(id < 0, "Invalid Id");
+        DomainExceptionValidation.When(id < 0, "Invalid Id.");
         Id = id;
         ValidateDomain(name);
     }
@@ -23,7 +23,7 @@ public sealed class Category : Entity
     {
         DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid Name. Name is required");
 
-        DomainExceptionValidation.When(name.Length < 3, "Invalid Name. too short, minimum 3 caracters");
+        DomainExceptionValidation.When(name.Length < 3, "Invalid Name. Too short, minimum 3 caracters.");
 
         Name = name;
     }
