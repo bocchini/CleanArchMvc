@@ -6,12 +6,12 @@ using CleanArchMvc.Application.Interfaces;
 
 namespace CleanArchMvc.Application.Services;
 
-public class ProdutService : IProductService
+public class ProductService : IProductService
 {
-    private readonly Mapper _mapper;
+    private readonly IMapper _mapper;
     private readonly IProductRepository _repository;
 
-    public ProdutService(Mapper mapper, IProductRepository repository)
+    public ProductService(IProductRepository repository, IMapper mapper)
     {
         this._mapper = mapper;
         this._repository = repository ?? throw new ArgumentException(nameof(IProductRepository));

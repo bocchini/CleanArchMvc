@@ -30,13 +30,13 @@ public class CategoryService : ICategoryService
         return categoriesDto;        
     }
 
-    public async Task<CategoryDto> GetById(int? id)
+    public async Task<CategoryDto> GetById(int id)
     {
         var category = _categoryRepository.GetByIdAsync(id).Result;
         return _mapper.Map<CategoryDto>(category);
     }
 
-    public async Task Remove(int? id)
+    public async Task Remove(int id)
     {
         var category = await _categoryRepository.GetByIdAsync(id);
         await _categoryRepository.RemoveAsync(category);        
