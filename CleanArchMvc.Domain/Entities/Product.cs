@@ -39,7 +39,7 @@ public sealed class Product : Entity
         DomainExceptionValidation.When(price < 0, "Invalid price value. Description is required");
         DomainExceptionValidation.When(stock < 0, "Invalid stock value");
         Description = description;
-        DomainExceptionValidation.When(image?.Length < 25, "Invalid image. too short, minimum 25 caracters");
+        DomainExceptionValidation.When(image?.Length < 5, "Invalid image. too short, minimum 5 caracters");
         DomainExceptionValidation.When(image?.Length > 255, "Invalid image name, too long, maximum 255 caracters");
 
         Name = name;
