@@ -7,7 +7,7 @@ namespace CleanArchMvc.Application.Products.Handlers;
 
 public class ProductUpdateCommandHandler:IRequestHandler<ProductUpdateCommand, Product>
 {
-    public readonly IProductRepository _productRepository
+    public readonly IProductRepository _productRepository;
 
     public ProductUpdateCommandHandler(IProductRepository productRepository)
     {

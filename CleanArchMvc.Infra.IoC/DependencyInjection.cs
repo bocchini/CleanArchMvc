@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using CleanArchMvc.Application.Interfaces;
 using CleanArchMvc.Infra.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
+using System.Net.NetworkInformation;
 
 namespace CleanArchMvc.Infra.IoC
 {
@@ -24,6 +26,14 @@ namespace CleanArchMvc.Infra.IoC
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddAutoMapper(typeof(DomainToDtoMappingProfile));
+
+            var myHandlers = AppDomain.CurrentDomain.Load("CleanArchMvc.Application");
+            services.AddMediatR(cfg =>
+            {
+            {
+                cfg.RegisterServicesFromAssemblies(typeof(CleanArchMvc.Application).Assembly, typeof(CleanArchMvc.Ioc).Assembly);
+            });
+        });
 
             return services;
         }

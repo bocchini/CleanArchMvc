@@ -7,7 +7,7 @@ namespace CleanArchMvc.Application.Products.Handlers;
 
 public class ProductRemoveCommandHandler : IRequestHandler<ProductRemoveCommand, Product>
 {
-    public readonly IProductRepository _productRepository
+    public readonly IProductRepository _productRepository;
 
     public ProductRemoveCommandHandler(IProductRepository productRepository)
     {
