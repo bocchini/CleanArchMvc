@@ -1,14 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using CleanArchMvc.Domain.Interfaces;
 using CleanArchMvc.Infra.Data.Context;
-using CleanArchMvc.Application.Mappings;
 using CleanArchMvc.Application.Services;
+using CleanArchMvc.Application.Mappings;
 using Microsoft.Extensions.Configuration;
 using CleanArchMvc.Application.Interfaces;
 using CleanArchMvc.Infra.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
-using System.Net.NetworkInformation;
+
 
 namespace CleanArchMvc.Infra.IoC
 {
@@ -28,13 +28,8 @@ namespace CleanArchMvc.Infra.IoC
             services.AddAutoMapper(typeof(DomainToDtoMappingProfile));
 
             var myHandlers = AppDomain.CurrentDomain.Load("CleanArchMvc.Application");
-            services.AddMediatR(cfg =>
-            {
-            {
-                cfg.RegisterServicesFromAssemblies(typeof(CleanArchMvc.Application).Assembly, typeof(CleanArchMvc.Ioc).Assembly);
-            });
-        });
-
+            services.AddMediatR(myHandlers);
+                
             return services;
         }
     }

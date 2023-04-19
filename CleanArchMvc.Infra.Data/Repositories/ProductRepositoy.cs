@@ -21,13 +21,11 @@ public class ProductRepositoy : IProductRepository
         return product;
     }
 
-    public async Task<Product> GetProductCategoryAsync(int id) => await _productRepository.Products
-            .Include(c => c.Category)
-            .SingleOrDefaultAsync(p => p.Id == id);
-
     public async Task<IEnumerable<Product>> GetProductsAsync() => await _productRepository.Products.ToListAsync();
 
-    public async Task<Product> GetProductsByIdAsync(int id) => await _productRepository.Products.FindAsync(id);
+    public async Task<Product> GetProductsByIdAsync(int id) => await _productRepository.Products
+        .Include(c => c.Category)
+        .SingleOrDefaultAsync(p => p.Id == id);
 
     public async Task<Product> RemoveAsync(Product product)
     {
